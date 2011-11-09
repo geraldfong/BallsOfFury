@@ -1,6 +1,6 @@
 package com.hack.balls.model;
 
-public class Ball implements Renderable {
+public abstract class Ball {
 	int x, y;
 	int dx, dy;
 	int radius;
@@ -37,7 +37,6 @@ public class Ball implements Renderable {
 		this.radius = radius;
 	}
 
-	@Override
 	public int getX() {
 		return x;
 	}
@@ -46,7 +45,6 @@ public class Ball implements Renderable {
 		this.x = x;
 	}
 
-	@Override
 	public int getY() {
 		return y;
 	}
@@ -69,5 +67,13 @@ public class Ball implements Renderable {
 
 	public void setDy(int dy) {
 		this.dy = dy;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
 	}
 }
