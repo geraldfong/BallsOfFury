@@ -1,62 +1,34 @@
 package com.hack.balls.model;
 
-public class Coin implements Renderable {
-	int x, y;
-	int radius;
+public class Coin extends Ball {
+	private int value;
 
 	public Coin() {
-		this(0, 0);
+		this(0, 0, 0);
 	}
 
-	public Coin(int x, int y) {
-		this(x, y, 1);
+	public Coin(int x, int y, int value) {
+		this(x, y, 0, 1);
 	}
 
-	public Coin(int x, int y, int radius) {
-		this.x = x;
-		this.y = y;
-		this.radius = radius;
-	}
-
-	@Override
-	public int getX() {
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		return y;
+	public Coin(int x, int y, int value, int radius) {
+		super(x, y, 0, 0, radius);
+		this.setValue(value);
 	}
 
 	/**
-	 * @return the radius
+	 * @return the value
 	 */
-	public int getRadius() {
-		return radius;
+	public int getValue() {
+		return value;
 	}
 
 	/**
-	 * @param radius
-	 *            the radius to set
+	 * @param value
+	 *            the value to set
 	 */
-	public void setRadius(int radius) {
-		this.radius = radius;
-	}
-
-	/**
-	 * @param x
-	 *            the x to set
-	 */
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	/**
-	 * @param y
-	 *            the y to set
-	 */
-	public void setY(int y) {
-		this.y = y;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 }
