@@ -43,11 +43,13 @@ public class PhysicsEngine implements Runnable {
 				b.setX(b.getX() + b.getDx());
 				b.setY(b.getY() + b.getDy());
 			}
-			for (Ball b : balls) {
+			for (int i = 0; i < balls.size(); i++) {
+				Ball b = balls.get(i);
 				if (!(b == player)) {
 					if (PhysicsUtil.colliding(player, b))
 						score += ((Coin) b).getValue();
 					balls.remove(b);
+					i -= 1;
 				}
 			}
 		}
