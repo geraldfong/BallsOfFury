@@ -32,6 +32,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		if ( START_GAME.equals(ae.getActionCommand())) {
 			remove(startPanel);
 			add(gamePanel);
+			gamePanel.startGame();
 			validate();
 		}
 	}
