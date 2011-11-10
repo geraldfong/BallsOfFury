@@ -1,7 +1,7 @@
 package com.hack.balls.engine;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.hack.balls.model.Ball;
 import com.hack.balls.model.Coin;
@@ -9,7 +9,7 @@ import com.hack.balls.model.Player;
 import com.hack.balls.util.PhysicsUtil;
 
 public class PhysicsEngine implements Runnable {
-	private List<Ball> balls;
+	private Vector<Ball> balls;
 	private Ball player;
 	public static final int NUM_COINS = 1;
 	public static final int COIN_RADIUS = 2;
@@ -22,7 +22,7 @@ public class PhysicsEngine implements Runnable {
 	public PhysicsEngine(int x, int y) {
 		this.x = x;
 		this.y = y;
-		balls = new ArrayList<Ball>();
+		balls = new Vector<Ball>();
 		score = 0;
 		player = new Player(0, 0, 5, 0, BALL_RADIUS);
 		balls.add(player);
