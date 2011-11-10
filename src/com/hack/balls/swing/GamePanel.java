@@ -16,15 +16,16 @@ public class GamePanel extends JPanel{
 		
 		scoreLabel = new JLabel("Score: 2");
 		add(scoreLabel);
-		
 		physicsEngine = new PhysicsEngine(MainFrame.X_SIZE, MainFrame.Y_SIZE);
 		
 		Thread gameThread = new Thread(physicsEngine);
 		gameThread.start();
 		
+		
 	}
 	
 	public void paint(Graphics g) {
+		g.drawOval(200, 200, 50, 50);
 		
 	}
 	
