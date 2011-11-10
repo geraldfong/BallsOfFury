@@ -14,8 +14,8 @@ public class PhysicsUtil {
 
 	public static boolean outOfBounds(Ball ball, int x, int y) {
 		return ((ball.getX() + ball.getRadius() > x) || (ball.getX()
-				+ ball.getRadius() < 0))
+				- ball.getRadius() < 0))
 				|| ((ball.getY() + ball.getRadius() > y) || (ball.getY()
-						+ ball.getRadius() < 0));
+						- ball.getRadius() < 0));
 	}
 }
