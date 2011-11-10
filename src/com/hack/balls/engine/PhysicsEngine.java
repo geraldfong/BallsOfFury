@@ -1,5 +1,6 @@
 package com.hack.balls.engine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.hack.balls.model.Ball;
@@ -21,6 +22,7 @@ public class PhysicsEngine implements Runnable {
 	public PhysicsEngine(int x, int y) {
 		this.x = x;
 		this.y = y;
+		balls = new ArrayList<Ball>();
 		score = 0;
 		player = new Player(0, 0, 5, 0, BALL_RADIUS);
 		balls.add(player);
