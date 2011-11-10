@@ -1,14 +1,14 @@
 package com.hack.balls.engine;
 
-import com.hack.balls.swing.GameGUI;
+import com.hack.balls.swing.MainFrame;
 
 public class GameEngine {
 
 	private static void runGame() {
 		Runnable swingRun = new Runnable() {
 			public void run() {
-				GameGUI gameGUI = new GameGUI();
-				gameGUI.init();
+				MainFrame mainFrame = new MainFrame();
+				mainFrame.setVisible(true);
 			}
 		};
 		Thread swingThread = new Thread(swingRun);

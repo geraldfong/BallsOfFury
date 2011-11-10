@@ -1,34 +1,38 @@
 package com.hack.balls.swing;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame {
+import javax.swing.JFrame;
+
+public class MainFrame extends JFrame implements ActionListener{
+
+	public static final String TITLE = "Balls of Fury";
 	
-	private String TITLE = "Balls of Fury";
-	private JPanel startPanel;
-	private JPanel gamePanel;
+	public static final String START_GAME = "START";
+	
+	private StartPanel startPanel;
+	private GamePanel gamePanel;
 	
 	public MainFrame() {
-		
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(TITLE);
-		setSize(500, 500);
+		setSize(400, 400);
 		
-		
-		startPanel = new StartPanel();
-		gamePanel = new GamePanel();
-		
+		startPanel = new StartPanel(this);
 		add(startPanel);
 		validate();
+		
+		gamePanel = new GamePanel(this);
 	}
 	
+	public void actionPerformed(ActionEvent ae) {
+		if ( START_GAME.equals(ae.getActionCommand())) {
+			remove(startPanel);
+			add(gamePanel);
+			validate();
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-
 }
