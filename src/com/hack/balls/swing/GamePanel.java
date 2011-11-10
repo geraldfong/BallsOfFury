@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.hack.balls.engine.PhysicsEngine;
+import com.hack.balls.model.Ball;
 
 public class GamePanel extends JPanel{
 
@@ -18,14 +19,30 @@ public class GamePanel extends JPanel{
 		add(scoreLabel);
 		physicsEngine = new PhysicsEngine(MainFrame.X_SIZE, MainFrame.Y_SIZE);
 		
-		Thread gameThread = new Thread(physicsEngine);
-		gameThread.start();
+		Thread physicsThread = new Thread(physicsEngine);
+		physicsThread.start();
 		
+		Runnable gameRun = new Runnable() {
+			public void run() {
+				while(true) {
+					repaint();
+				}
+			}
+		};
+		Thread gameThread = new Thread(gameRun);
+		gameThread.start();
 		
 	}
 	
 	public void paint(Graphics g) {
-		g.drawOval(200, 200, 50, 50);
+		System.out.println("Paiting");
+		System.out.println("cool");
+		System.out.println(physicsEngine.getBalls());
+		for( Ball ball : physicsEngine.getBalls()) {
+			
+			g.drawOval(ball.getX(), ball.getY(), ball.getRadius() *2, ball.getRadius() *2);
+		}
+		
 		
 	}
 	
