@@ -37,9 +37,10 @@ public class PhysicsEngine implements Runnable {
 				b.setY(b.getY() + b.getDy());
 			}
 			for (Ball b : balls) {
-				if (!(b instanceof Player)) {
+				if (!(b == player)) {
 					if (PhysicsUtil.colliding(player, b))
 						score += ((Coin) b).getValue();
+					balls.remove(b);
 				}
 			}
 		}
@@ -51,5 +52,9 @@ public class PhysicsEngine implements Runnable {
 
 	public List<Ball> getBalls() {
 		return balls;
+	}
+
+	public int getScore() {
+		return score;
 	}
 }
