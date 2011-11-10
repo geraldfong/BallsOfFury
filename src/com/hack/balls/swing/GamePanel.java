@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.hack.balls.engine.PhysicsEngine;
 import com.hack.balls.model.Ball;

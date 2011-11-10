@@ -39,6 +39,7 @@ public class PhysicsEngine implements Runnable {
 			for (Ball b : balls) {
 				b.setX(b.getX() + b.getDx());
 				b.setY(b.getY() + b.getDy());
+				System.out.println(b.getDx());
 			}
 			int addCoin = 0;
 			for (int i = 0; i < balls.size(); i++) {
