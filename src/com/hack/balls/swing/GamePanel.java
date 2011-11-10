@@ -22,28 +22,31 @@ public class GamePanel extends JPanel{
 		Thread physicsThread = new Thread(physicsEngine);
 		physicsThread.start();
 		
+		
+		/*
 		Runnable gameRun = new Runnable() {
 			public void run() {
 				while(true) {
-					repaint();
+				
 				}
 			}
 		};
 		Thread gameThread = new Thread(gameRun);
-		gameThread.start();
+		gameThread.start();*/
 		
 	}
 	
-	public void paint(Graphics g) {
+	
+	public void paintComponent(Graphics g) {
 		System.out.println("Paiting");
 		System.out.println("cool");
 		System.out.println(physicsEngine.getBalls());
 		for( Ball ball : physicsEngine.getBalls()) {
-			
-			g.drawOval(ball.getX(), ball.getY(), ball.getRadius() *2, ball.getRadius() *2);
+			System.out.println(ball.getX() + " " + ball.getY() + " " + ball.getRadius() );
+			g.drawOval(20, 20, ball.getRadius() *100, ball.getRadius() *100);
 		}
 		
-		
+		validate();
 	}
 	
 	
