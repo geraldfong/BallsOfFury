@@ -15,7 +15,7 @@ public class PhysicsEngine implements Runnable {
 	public static final int COIN_VALUE = 1;
 	public static final int BALL_RADIUS = 4;
 	private int score;
-	private boolean gameOver = false;
+	public boolean gameOver = false;
 	private int x, y;
 
 	public PhysicsEngine(int x, int y) {
