@@ -33,12 +33,13 @@ public class GamePanel extends SimpleAnimation2 {
         g.fillRect( 0, 0, getWidth(), getHeight() );
 
         g.setColor( getForeground() );
-        
+
 		List<Ball> balls = physicsEngine.getBalls();
+		System.out.println(balls);
 		for (int i = 0; i < balls.size(); i++) {
 			Ball ball = balls.get(i);
-			System.out.println(ball.getRadius());
-			System.out.println(ball.getX());
+//			System.out.println(ball.getRadius());
+//			System.out.println(ball.getX());
 			g.drawOval(ball.getX(), ball.getY(), ball.getRadius() * 2,
 					ball.getRadius() * 2);
 		}

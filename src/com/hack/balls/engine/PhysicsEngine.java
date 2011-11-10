@@ -29,17 +29,18 @@ public class PhysicsEngine implements Runnable {
 		for (int i = 0; i < NUM_COINS; i++) {
 			addCoin();
 		}
-		System.out.println(balls);
 	}
 
 	@Override
 	public void run() {
 		while (!gameOver) {
 			gameOver = PhysicsUtil.outOfBounds(player, x, y);
-			for (Ball b : balls) {
+			System.out.println(gameOver);
+			for (int i = 0; i < balls.size(); i++) {
+				Ball b = balls.get(i);
+
 				b.setX(b.getX() + b.getDx());
 				b.setY(b.getY() + b.getDy());
-				System.out.println(b.getDx());
 			}
 			int addCoin = 0;
 			for (int i = 0; i < balls.size(); i++) {
@@ -54,6 +55,7 @@ public class PhysicsEngine implements Runnable {
 
 			}
 			addCoins(addCoin);
+			// Thread.sleep(1000);
 		}
 	}
 
