@@ -10,7 +10,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	public static final String TITLE = "Balls of Fury";
 	
 	public static final String START_GAME = "START";
-	
+	public static final int X_SIZE = 500;
+	public static final int Y_SIZE = 500;
 	private StartPanel startPanel;
 	private GamePanel gamePanel;
 	
@@ -18,7 +19,7 @@ public class MainFrame extends JFrame implements ActionListener{
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(TITLE);
-		setSize(400, 400);
+		setSize(X_SIZE, Y_SIZE);
 		
 		startPanel = new StartPanel(this);
 		add(startPanel);
