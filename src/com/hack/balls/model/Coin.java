@@ -31,4 +31,7 @@ public class Coin extends Ball {
 		this.value = value;
 	}
 
+	public String toString() {
+		return "{" + super.toString() + ", {" + value + "}}";
+	}
 }

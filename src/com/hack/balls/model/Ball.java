@@ -76,4 +76,8 @@ public abstract class Ball {
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
+
+	public String toString() {
+		return "{(" + getX() + "," + getY() + "), [" + getRadius() + "]}";
+	}
 }
