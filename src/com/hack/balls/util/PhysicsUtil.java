@@ -11,4 +11,11 @@ public class PhysicsUtil {
 	public static boolean colliding(Ball ball1, Ball ball2) {
 		return (ball1.getRadius() + ball2.getRadius()) >= distance(ball1, ball2);
 	}
+
+	public static boolean outOfBounds(Ball ball, int x, int y) {
+		return ((ball.getX() + ball.getRadius() > x) || (ball.getX()
+				+ ball.getRadius() < 0))
+				|| ((ball.getY() + ball.getRadius() > y) || (ball.getY()
+						+ ball.getRadius() < 0));
+	}
 }
