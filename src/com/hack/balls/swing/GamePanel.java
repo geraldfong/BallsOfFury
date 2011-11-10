@@ -37,6 +37,8 @@ public class GamePanel extends SimpleAnimation2 implements KeyListener{
 	}
 	
 	public void drawFrame( Graphics g) {
+		
+		
 		//System.out.println("In paint");
         g.setColor( getBackground() );
         g.fillRect( 0, 0, getWidth(), getHeight() );
