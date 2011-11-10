@@ -1,6 +1,8 @@
 package com.hack.balls.swing;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -8,22 +10,29 @@ import javax.swing.JLabel;
 import com.hack.balls.engine.PhysicsEngine;
 import com.hack.balls.model.Ball;
 
-public class GamePanel extends SimpleAnimation2 {
+public class GamePanel extends SimpleAnimation2 implements KeyListener{
 
 	private JLabel scoreLabel;
 	private PhysicsEngine physicsEngine;
 
 	public GamePanel(MainFrame mainFrame) {
 
+		
 		scoreLabel = new JLabel("Score: 2");
 		add(scoreLabel);
 		physicsEngine = new PhysicsEngine(MainFrame.X_SIZE, MainFrame.Y_SIZE);
 
+		
+		addKeyListener(this);
+		
+		
+	}
+	
+	public void startGame() {
+
 		Thread physicsThread = new Thread(physicsEngine);
 		physicsThread.start();
-		
-		this.start();
-		
+		start();
 		
 	}
 	
@@ -34,6 +43,7 @@ public class GamePanel extends SimpleAnimation2 {
 
         g.setColor( getForeground() );
 
+        /*
 		List<Ball> balls = physicsEngine.getBalls();
 		System.out.println(balls);
 		for (int i = 0; i < balls.size(); i++) {
@@ -42,7 +52,7 @@ public class GamePanel extends SimpleAnimation2 {
 //			System.out.println(ball.getX());
 			g.drawOval(ball.getX(), ball.getY(), ball.getRadius() * 2,
 					ball.getRadius() * 2);
-		}
+		}*/
 		
 		/*
         g.setColor( getBackground() );
@@ -54,10 +64,21 @@ public class GamePanel extends SimpleAnimation2 {
             30 );*/
 
 	}
-	
-	/*
-	public void paint(Graphics g) {
+
+	public void keyPressed(KeyEvent event) {
+		System.out.println(event.getID());
 		
-	}*/
+	}
+
+	public void keyReleased(KeyEvent arg0) {
+		System.out.println("Action");
+		
+	}
+
+	public void keyTyped(KeyEvent arg0) {
+		System.out.println("keyTyped");
+		
+	}
+	
 
 }
