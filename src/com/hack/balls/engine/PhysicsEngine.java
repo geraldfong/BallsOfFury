@@ -35,7 +35,6 @@ public class PhysicsEngine implements Runnable {
 	public void run() {
 		while (!gameOver) {
 			gameOver = PhysicsUtil.outOfBounds(player, x, y);
-			System.out.println(gameOver);
 			for (int i = 0; i < balls.size(); i++) {
 				Ball b = balls.get(i);
 
@@ -55,7 +54,11 @@ public class PhysicsEngine implements Runnable {
 
 			}
 			addCoins(addCoin);
-			// Thread.sleep(1000);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
