@@ -15,8 +15,12 @@ public class PhysicsEngine implements Runnable {
 	public static final int COIN_VALUE = 1;
 	public static final int BALL_RADIUS = 4;
 	private int score;
+	private boolean gameOver = false;
+	private int x, y;
 
 	public PhysicsEngine(int x, int y) {
+		this.x = x;
+		this.y = y;
 		score = 0;
 		player = new Player(0, 0, 5, 0, BALL_RADIUS);
 		balls.add(player);
@@ -31,7 +35,8 @@ public class PhysicsEngine implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (!gameOver) {
+			gameOver = PhysicsUtil.outOfBounds(player, x, y);
 			for (Ball b : balls) {
 				b.setX(b.getX() + b.getDx());
 				b.setY(b.getY() + b.getDy());
