@@ -9,51 +9,55 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import com.hack.balls.engine.PhysicsEngine;
 import com.hack.balls.model.Ball;
 
-public class GamePanel extends SimpleAnimation2 implements KeyListener {
+public class GamePanel extends JPanel implements KeyListener, ActionListener {
+	
+	
+	public static final String REPAINT_COMMAND = "REPAINT";
+	public static final String START_COMMAND = "START";
+	public static final int MILLIS_PER_FRAME = 20;
 
 	private JLabel scoreLabel;
 	private JButton startButton;
 	private PhysicsEngine physicsEngine;
+	private Timer timer;
+	
 
 	public GamePanel(MainFrame mainFrame) {
 
 		setFocusable(true);
 		addKeyListener(this);
-		setMillisecondsPerFrame(20);
+		
+		timer = new Timer(MILLIS_PER_FRAME, this);
+		timer.setActionCommand(REPAINT_COMMAND);
 
 
 		startButton = new JButton("Begin!");
 		startButton.addKeyListener(this);
-		startButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				startGame();
-			}
-		});
+		startButton.addActionListener(this);
+		startButton.setActionCommand(START_COMMAND);
 		scoreLabel = new JLabel();
 
 		add(scoreLabel);
 		add(startButton);
-
-		start();
 	}
 
 	public void startGame() {
-
-		System.out.println("Start gsdfame");
+		
 		physicsEngine = new PhysicsEngine(MainFrame.X_SIZE, MainFrame.Y_SIZE);
 		Thread physicsThread = new Thread(physicsEngine);
 		physicsThread.start();
-
-
-		setFocusable(true);
+		
+		timer.start();
 
 	}
 
-	public void drawFrame(Graphics g) {
+	public void paintComponent(Graphics g) {
 
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -92,13 +96,20 @@ public class GamePanel extends SimpleAnimation2 implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Boo");
-
+		// do nothing
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		e.getKeyCode();
+		// do nothing
+	}
+	
+	public void actionPerformed(ActionEvent evt) {
+		if (REPAINT_COMMAND.equals(evt.getActionCommand())) {
+			repaint();
+		} else if (START_COMMAND.equals(evt.getActionCommand())){
+			startGame();
+		}
 	}
 
 }

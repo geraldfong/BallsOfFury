@@ -6,7 +6,6 @@ public class MainFrame extends JFrame {
 
 	public static final String TITLE = "Balls of Fury";
 	
-	public static final String START_GAME = "START";
 	public static final int X_SIZE = 500;
 	public static final int Y_SIZE = 500;
 	private GamePanel gamePanel;
@@ -19,7 +18,6 @@ public class MainFrame extends JFrame {
 		
 		gamePanel = new GamePanel(this);
 		add(gamePanel);
-		validate();
 		
 	}
 	
