@@ -117,7 +117,6 @@ public class SimpleAnimation2 extends JPanel implements ActionListener
 
     public void setMillisecondsPerFrame( int time )
     {
-    	
         // Set the APPROXIMATE number of milliseconds to be used for each frame.
         // For example, set time = 1000 if you want each frame to be displayed
         // for

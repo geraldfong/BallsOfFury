@@ -10,10 +10,10 @@ import com.hack.balls.util.PhysicsUtil;
 
 public class PhysicsEngine implements Runnable {
 	private List<Ball> balls;
-	private Ball player;
+	private Player player;
 	public static final int NUM_COINS = 1;
-	public static final int COIN_RADIUS = 40;
-	public static final int COIN_VALUE = 1;
+	public static final int COIN_RADIUS = 10;
+	public static final int COIN_VALUE = 50;
 	public static final int BALL_RADIUS = 30;
 	private int score;
 	public boolean gameOver = false;
@@ -49,6 +49,7 @@ public class PhysicsEngine implements Runnable {
 						score += ((Coin) b).getValue();
 						balls.remove(b);
 						addCoin += 1;
+						player.increaseSpeed();
 					}
 				}
 
@@ -74,10 +75,10 @@ public class PhysicsEngine implements Runnable {
 				/ 2;
 		int coinY = ((int) (Math.random() * (y - COIN_RADIUS))) + COIN_RADIUS
 				/ 2;
-		balls.add(new Coin(coinX, coinY, COIN_VALUE, COIN_RADIUS));
+		balls.add(new Coin(coinX, coinY, COIN_VALUE, COIN_RADIUS + (int)(Math.random() * 20)));
 	}
 
-	public Ball getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 
