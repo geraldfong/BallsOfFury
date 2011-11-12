@@ -56,13 +56,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void paintComponent(Graphics g) {
-
+		
+		
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 
 		g.setColor(getForeground());
 
 		if (physicsEngine != null) {
+			scoreLabel.setText("Score: " + physicsEngine.getScore());
 			List<Ball> balls = physicsEngine.getBalls();
 			for (int i = 0; i < balls.size(); i++) {
 				Ball ball = balls.get(i);

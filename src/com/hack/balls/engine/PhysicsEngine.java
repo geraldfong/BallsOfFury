@@ -14,7 +14,7 @@ public class PhysicsEngine implements Runnable {
 	public static final int NUM_COINS = 1;
 	public static final int COIN_RADIUS = 10;
 	public static final int COIN_VALUE = 50;
-	public static final int BALL_RADIUS = 30;
+	public static final int BALL_RADIUS = 5;
 	private int score;
 	public boolean gameOver = false;
 	private int x, y;
@@ -24,7 +24,7 @@ public class PhysicsEngine implements Runnable {
 		this.y = y;
 		balls = new Vector<Ball>();
 		score = 0;
-		player = new Player(x / 2, y / 2, 2, 0, BALL_RADIUS);
+		player = new Player(x / 2, y / 2, 1, 0, BALL_RADIUS);
 		balls.add(player);
 		for (int i = 0; i < NUM_COINS; i++) {
 			addCoin();
@@ -55,7 +55,7 @@ public class PhysicsEngine implements Runnable {
 			}
 			addCoins(addCoin);
 			try {
-				Thread.sleep(20);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
