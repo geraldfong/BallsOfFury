@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public static final String REPAINT_COMMAND = "REPAINT";
 	public static final String START_COMMAND = "START";
 	public static final int MILLIS_PER_FRAME = 10;
-	
+
 	private JLabel scoreLabel;
 	private JButton startButton;
 	private PhysicsEngine physicsEngine;

@@ -1,9 +1,13 @@
 package com.hack.balls.model;
-
+/**
+ * Encapsulation of a ball object; balls are meant to be displayed since they have x,y coordinates and a radius.
+ * @author Sharad Vikram
+ *
+ */
 public abstract class Ball {
-	int x, y;
-	int dx, dy;
-	int radius;
+	private int x, y;
+	private int dx, dy;
+	private int radius;
 
 	/**
 	 * Default constructor for Ball. Initializes x,y,dx,dy with 0; radius

@@ -1,5 +1,11 @@
 package com.hack.balls.model;
 
+/**
+ * A subclass of Ball. Coins have value
+ * 
+ * @author Sharad Vikram
+ * 
+ */
 public class Coin extends Ball {
 	private int value;
 
@@ -11,6 +17,14 @@ public class Coin extends Ball {
 		this(x, y, 0, 1);
 	}
 
+	/**
+	 * Instantiates a Coin with a given position, value, and radius
+	 * 
+	 * @param x
+	 * @param y
+	 * @param value
+	 * @param radius
+	 */
 	public Coin(int x, int y, int value, int radius) {
 		super(x, y, 0, 0, radius);
 		this.setValue(value);
