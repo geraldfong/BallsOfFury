@@ -6,8 +6,8 @@ public class MainFrame extends JFrame {
 
 	public static final String TITLE = "Balls of Fury";
 	
-	public static final int X_SIZE = 500;
-	public static final int Y_SIZE = 500;
+	public static final int X_SIZE = 700;
+	public static final int Y_SIZE = 700;
 	public static final int Y_SIZE_BUFFER = 25;
 	private GamePanel gamePanel;
 	

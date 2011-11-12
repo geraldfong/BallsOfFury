@@ -60,7 +60,6 @@ public class PhysicsEngine implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Game over");
 	}
 
 	public void addCoins(int n) {

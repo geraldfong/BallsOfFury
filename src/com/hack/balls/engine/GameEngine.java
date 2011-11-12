@@ -1,5 +1,6 @@
 package com.hack.balls.engine;
 
+import com.hack.balls.swing.GamePanel;
 import com.hack.balls.swing.MainFrame;
 
 public class GameEngine {
@@ -16,7 +17,6 @@ public class GameEngine {
 	}
 	
 	public static void main(String[] args) {
-		
 		GameEngine.runGame();
 	}
 }

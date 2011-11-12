@@ -5,8 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,13 +30,43 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public static final String REPAINT_COMMAND = "REPAINT";
 	public static final String START_COMMAND = "START";
 	public static final int MILLIS_PER_FRAME = 10;
+	public static final String IMAGE_NAME = "media/nyan.jpg";
+	public static final String AUDIO_NAME = "media/nyan.wav";
 
 	private JLabel scoreLabel;
 	private JButton startButton;
 	private PhysicsEngine physicsEngine;
 	private Timer timer;
+	private BufferedImage bgImage;
+
+	public synchronized void playSound(final String url) {
+		try {
+			// Open an audio input stream.
+			File file = new File(url);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			// Get a sound clip resource.
+			Clip clip = AudioSystem.getClip();
+			// Open audio clip and load samples from the audio input stream.
+			clip.open(audioIn);
+			clip.start();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public GamePanel(MainFrame mainFrame) {
+
+		try {
+			bgImage = ImageIO.read(new File(IMAGE_NAME));
+		} catch (IOException e) {
+			System.out.println(e);
+			e.printStackTrace();
+			System.out.println("Failed to read " + IMAGE_NAME);
+		}
 
 		setFocusable(true);
 		addKeyListener(this);
@@ -51,15 +91,19 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		physicsThread.start();
 
 		timer.start();
+		playSound(AUDIO_NAME);
 
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		
-		
-		g.setColor(getBackground());
-		g.fillRect(0, 0, getWidth(), getHeight());
+
+		if (bgImage != null) {
+			g.drawImage(bgImage, 0, 0, this.getWidth(), this.getHeight(), this);
+		}
+
+		// g.setColor(getBackground());
+		// g.fillRect(0, 0, getWidth(), getHeight());
 
 		g.setColor(getForeground());
 
