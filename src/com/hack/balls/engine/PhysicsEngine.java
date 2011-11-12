@@ -71,12 +71,13 @@ public class PhysicsEngine implements Runnable {
 	}
 
 	public void addCoin() {
+		
 		int coinRadius = COIN_RADIUS + (int)(Math.random() * 20);
 		
 		int coinX = ((int) (Math.random() * (x - coinRadius * 2))) + coinRadius;
 		int coinY = ((int) (Math.random() * (y - coinRadius * 2))) + coinRadius;
-		System.out.println("X: " + coinX + " Y : " + coinY);
 		balls.add(new Coin(coinX, coinY, COIN_VALUE, coinRadius));
+		
 	}
 
 	public Player getPlayer() {
