@@ -1,5 +1,6 @@
 package com.hack.balls.swing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,19 +9,14 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 
 import com.hack.balls.engine.PhysicsEngine;
 import com.hack.balls.model.Ball;
@@ -39,32 +35,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	private Timer timer;
 	private BufferedImage bgImage;
 
-	public synchronized void playSound(final String url) {
-		try {
-			// Open an audio input stream.
-			File file = new File(url);
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			// Get a sound clip resource.
-			Clip clip = AudioSystem.getClip();
-			// Open audio clip and load samples from the audio input stream.
-			clip.open(audioIn);
-			clip.start();
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public GamePanel(MainFrame mainFrame) {
-
+		
+		
 		try {
 			bgImage = ImageIO.read(new File(IMAGE_NAME));
 		} catch (IOException e) {
-			System.out.println(e);
-			e.printStackTrace();
 			System.out.println("Failed to read " + IMAGE_NAME);
 		}
 
@@ -79,6 +55,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		startButton.addActionListener(this);
 		startButton.setActionCommand(START_COMMAND);
 		scoreLabel = new JLabel();
+		scoreLabel.setForeground(Color.CYAN);
 
 		add(scoreLabel);
 		add(startButton);
@@ -91,7 +68,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		physicsThread.start();
 
 		timer.start();
-		playSound(AUDIO_NAME);
 
 	}
 
@@ -102,10 +78,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 			g.drawImage(bgImage, 0, 0, this.getWidth(), this.getHeight(), this);
 		}
 
-		// g.setColor(getBackground());
-		// g.fillRect(0, 0, getWidth(), getHeight());
-
 		g.setColor(getForeground());
+		g.setColor(Color.CYAN);
 
 		if (physicsEngine != null) {
 			scoreLabel.setText("Score: " + physicsEngine.getScore());
@@ -124,6 +98,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
+		if( physicsEngine == null) {
+			return;
+		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			physicsEngine.getPlayer().moveUp();
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
