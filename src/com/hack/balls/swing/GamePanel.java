@@ -69,6 +69,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 				g.fillOval(ball.getX() - ball.getRadius(),
 						ball.getY() - ball.getRadius(), ball.getRadius() * 2,
 						ball.getRadius() * 2);
+				System.out.println(ball);
 
 			}
 			scoreLabel.setText("Score: " + physicsEngine.getScore());

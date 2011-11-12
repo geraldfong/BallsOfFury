@@ -33,8 +33,7 @@ public class PhysicsEngine implements Runnable {
 
 	@Override
 	public void run() {
-		while (!gameOver) {
-			gameOver = PhysicsUtil.outOfBounds(player, x, y);
+		while (!PhysicsUtil.outOfBounds(player, x, y)) {
 			for (int i = 0; i < balls.size(); i++) {
 				Ball b = balls.get(i);
 
