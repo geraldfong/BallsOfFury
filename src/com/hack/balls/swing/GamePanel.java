@@ -16,26 +16,23 @@ import com.hack.balls.engine.PhysicsEngine;
 import com.hack.balls.model.Ball;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-	
-	
+
 	public static final String REPAINT_COMMAND = "REPAINT";
 	public static final String START_COMMAND = "START";
-	public static final int MILLIS_PER_FRAME = 20;
-
+	public static final int MILLIS_PER_FRAME = 10;
+	
 	private JLabel scoreLabel;
 	private JButton startButton;
 	private PhysicsEngine physicsEngine;
 	private Timer timer;
-	
 
 	public GamePanel(MainFrame mainFrame) {
 
 		setFocusable(true);
 		addKeyListener(this);
-		
+
 		timer = new Timer(MILLIS_PER_FRAME, this);
 		timer.setActionCommand(REPAINT_COMMAND);
-
 
 		startButton = new JButton("Begin!");
 		startButton.addKeyListener(this);
@@ -48,15 +45,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	}
 
 	public void startGame() {
-		
+
 		physicsEngine = new PhysicsEngine(MainFrame.X_SIZE, MainFrame.Y_SIZE);
 		Thread physicsThread = new Thread(physicsEngine);
 		physicsThread.start();
-		
+
 		timer.start();
 
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 
 		g.setColor(getBackground());
@@ -103,11 +101,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public void keyTyped(KeyEvent e) {
 		// do nothing
 	}
-	
+
 	public void actionPerformed(ActionEvent evt) {
 		if (REPAINT_COMMAND.equals(evt.getActionCommand())) {
 			repaint();
-		} else if (START_COMMAND.equals(evt.getActionCommand())){
+		} else if (START_COMMAND.equals(evt.getActionCommand())) {
 			startGame();
 		}
 	}
